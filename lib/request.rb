@@ -12,6 +12,14 @@ class Request
 
   include Adamantium::Flat, AbstractType, Equalizer.new(*KEYS)
 
+  # Return protocol
+  #
+  # @return [Protocol]
+  #
+  # @api private
+  #
+  abstract_method :protocol
+
   # Return path info
   #
   # @return [String]
@@ -105,31 +113,17 @@ class Request
   end
   memoize :root_uri
 
-  # Return default port for protocol
+  # Return host with optional port
   #
-  # @return [Fixnum]
+  # Only returns port if protocols default port diffes from actual port.
+  #
+  # @return [String]
   #
   # @api private
   #
-  def default_port
-    case protocol
-    when 'http'
-      80
-    when 'https'
-      443
-    else
-      raise "No default port for protocol #{protocol}"
-    end
-  end
-
-  # Return host with port
-  #
-  # @return [String]
-  #   if port is non 80 returns host:port if port is 80 returns only host
-  #
   def host_with_port
     uhost, uport = self.host, self.port
-    if port != default_port
+    if port != protocol.default_port
       "#{uhost}:#{uport}"
     else
       uhost
@@ -142,3 +136,4 @@ end
 require 'request/key'
 require 'request/rack'
 require 'request/routed'
+require 'request/protocol'
