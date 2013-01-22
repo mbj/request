@@ -62,9 +62,11 @@ class Request
     "#{root_uri}#{path_info}"
   end
 
-  # Replace path
+  # Return absolute uri for path
   #
   # @param [Path]
+  #
+  # @return [String]
   #
   # @api private
   #
@@ -72,37 +74,11 @@ class Request
     "#{root_uri}#{path}"
   end
 
-  # Test if request method is post
-  #
-  # @return [true]
-  #   if request method is post
-  #
-  # @return [false]
-  #   otherwise
-  #
-  # @api private
-  #
-  def get?
-    request_method == 'POST'
-  end
-
-  # Test if request method is get
-  #
-  # @return [true]
-  #   if request method is get
-  #
-  # @return [false]
-  #   otherwise
-  #
-  # @api private
-  #
-  def get?
-    request_method == 'GET'
-  end
-
   # Return routed request
   #
   # @param [Hash] params
+  #
+  # @return [Request::Routed]
   #
   # @api private
   #

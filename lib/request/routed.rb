@@ -1,10 +1,10 @@
 class Request
+  # A routed request with routing params
+  #
+  # FIXME: I do not like this, need to come up with something much better!
+  #
   class Routed < self
-    def initialize(request, routing_params)
-      @request, @routing_params = request, routing_params
-    end
-
-    attr_reader :routing_params
+    include Composition.new(:request, :routing_params)
 
     METHODS.each do |name|
       define_method(name) do
