@@ -59,6 +59,18 @@ class Request
     end
 
     REQUEST_METHOD = Key.new('REQUEST_METHOD')
+    RACK_URL_SCHEME = Key.new('rack.url_scheme')
+
+    # Return request protocol
+    #
+    # @return [Protocol]
+    #
+    # @api private
+    #
+    def protocol
+      Protocol.get(access(RACK_URL_SCHEME))
+    end
+    memoize :protocol
 
     # Return request method
     #
@@ -69,10 +81,10 @@ class Request
     def request_method
       Method.get(access(REQUEST_METHOD))
     end
+    memoize :request_method
 
-    accessor(:path_info,      Key.new('PATH_INFO')      )
-    accessor(:host,           Key.new('SERVER_NAME')    )
-    accessor(:protocol,       Key.new('rack.url_scheme'))
+    accessor(:path_info, Key.new('PATH_INFO')      )
+    accessor(:host,      Key.new('SERVER_NAME')    )
 
   private
 
