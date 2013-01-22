@@ -5,8 +5,26 @@ class Request
 
     private_class_method :new
 
-    POST = new('POST')
-    GET  = new('GET')
-    PUT  = new('PUT')
+    ALL = []
+    ALL << POST = new('POST')
+    ALL << GET  = new('GET')
+    ALL << PUT  = new('PUT')
+    ALL.freeze
+
+    INDEX = ALL.each_with_object({}) do |method, index|
+      index[method.verb]=method
+    end.freeze
+
+    # Return request method
+    #
+    # @param [String] verb
+    #
+    # @return [Method]
+    #
+    # @api private
+    #
+    def self.get(verb)
+      INDEX.fetch(verb)
+    end
   end
 end

@@ -13,7 +13,7 @@ class Request
     #
     def self.accessor(name, key)
       define_method(name) do
-        @rack_env.fetch(key)
+        access(key)
       end
     end
 
@@ -58,9 +58,34 @@ class Request
       @rack_env = dup
     end
 
+    REQUEST_METHOD = Key.new('REQUEST_METHOD')
+
+    # Return request method
+    #
+    # @return [Method]
+    #
+    # @api private
+    #
+    def request_method
+      Method.get(access(REQUEST_METHOD))
+    end
+
     accessor(:path_info,      Key.new('PATH_INFO')      )
     accessor(:host,           Key.new('SERVER_NAME')    )
-    accessor(:request_method, Key.new('REQUEST_METHOD') )
     accessor(:protocol,       Key.new('rack.url_scheme'))
+
+  private
+
+    # Return value for key
+    #
+    # @param [Key] key
+    #
+    # @return [Object]
+    #
+    # @api private
+    #
+    def access(key)
+      @rack_env.fetch(key)
+    end
   end
 end
