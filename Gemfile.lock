@@ -13,6 +13,15 @@ GIT
     listen (0.7.2)
 
 GIT
+  remote: https://github.com/mbj/composition.git
+  revision: 1d3ffcd78235b3ccc2e00a07849acd8a20094572
+  specs:
+    composition (0.0.1)
+      adamantium (~> 0.0.5)
+      backports (~> 2.7.0)
+      equalizer (~> 0.0.3)
+
+GIT
   remote: https://github.com/troessner/reek.git
   revision: ef77fcecaa21c9ebcbe4d9a79d41b0e70196bf18
   ref: ef77fcecaa21c9ebcbe4d9a79d41b0e70196bf18
@@ -30,6 +39,7 @@ PATH
       abstract_type (~> 0.0.2)
       adamantium (~> 0.0.1)
       adamantium (~> 0.0.2)
+      composition (~> 0.0.1)
       equalizer (~> 0.0.1)
       ice_nine (~> 0.6.0)
 
@@ -145,6 +155,7 @@ PLATFORMS
 
 DEPENDENCIES
   backports (~> 2.7.0)
+  composition!
   devtools!
   flay (~> 1.4.3)
   flog (~> 2.5.3)

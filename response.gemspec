@@ -14,9 +14,10 @@ Gem::Specification.new do |gem|
   gem.test_files       = `git ls-files -- {spec}/*`.split("\n")
   gem.extra_rdoc_files = %w[LICENSE README.md TODO]
 
-  gem.add_dependency 'ice_nine',      '~> 0.6.0'
-  gem.add_dependency 'adamantium',    '~> 0.0.2'
-  gem.add_dependency 'equalizer',     '~> 0.0.1'
-  gem.add_dependency 'adamantium',    '~> 0.0.1'
-  gem.add_dependency 'abstract_type', '~> 0.0.2'
+  gem.add_dependency('composition',   '~> 0.0.1')
+  gem.add_dependency('ice_nine',      '~> 0.6.0')
+  gem.add_dependency('adamantium',    '~> 0.0.2')
+  gem.add_dependency('equalizer',     '~> 0.0.1')
+  gem.add_dependency('adamantium',    '~> 0.0.1')
+  gem.add_dependency('abstract_type', '~> 0.0.2')
 end

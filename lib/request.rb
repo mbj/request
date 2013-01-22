@@ -1,3 +1,4 @@
+require 'composition'
 require 'equalizer'
 require 'abstract_type'
 require 'adamantium'
