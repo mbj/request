@@ -44,6 +44,14 @@ class Request
   #
   abstract_method :port
 
+  # Return request method
+  #
+  # @return [Method]
+  #
+  # @api private
+  #
+  abstract_method :request_method
+
   # Return absolute uri
   #
   # @return [String]
@@ -136,4 +144,5 @@ end
 require 'request/key'
 require 'request/rack'
 require 'request/routed'
+require 'request/method'
 require 'request/protocol'
