@@ -2,6 +2,10 @@ class Request
   # Rack request
   class Rack < self
 
+    SERVER_PORT     = Key.new('SERVER_PORT')
+    REQUEST_METHOD  = Key.new('REQUEST_METHOD')
+    RACK_URL_SCHEME = Key.new('rack.url_scheme')
+
     # Declare accessor
     #
     # @param [Symbol] name
@@ -25,13 +29,6 @@ class Request
     #
     attr_reader :rack_env
 
-    MUTABLE_KEYS = IceNine.deep_freeze(%w(
-      rack.errors
-      rack.input
-    ))
-
-    SERVER_PORT = Key.new('SERVER_PORT')
-
     # Return http port
     #
     # @return [Fixnum]
@@ -51,15 +48,8 @@ class Request
     # @api private
     #
     def initialize(rack_env)
-      dup = rack_env.dup
-      MUTABLE_KEYS.each do |key|
-        dup.delete(key)
-      end
-      @rack_env = dup
+      @rack_env = rack_env
     end
-
-    REQUEST_METHOD = Key.new('REQUEST_METHOD')
-    RACK_URL_SCHEME = Key.new('rack.url_scheme')
 
     # Return request protocol
     #
