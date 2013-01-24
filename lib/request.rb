@@ -93,7 +93,7 @@ class Request
   # @api private
   #
   def root_uri
-    "#{protocol}://#{host_with_port}"
+    "#{protocol.name}://#{host_with_port}"
   end
   memoize :root_uri
 
