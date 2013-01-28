@@ -6,7 +6,7 @@ require 'ice_nine'
 
 # Library namespace and abstract base class
 class Request
-  KEYS = %W(path_info protocol port request_method host).map(&:to_sym).freeze
+  KEYS = %W(path_info protocol port request_method host if_modified_since).map(&:to_sym).freeze
 
   METHODS = (KEYS + %W(rack_env get? post?)).map(&:to_sym).freeze
 
@@ -19,6 +19,18 @@ class Request
   # @api private
   #
   abstract_method :protocol
+
+  # Return if modified since header
+  #
+  # @return [Time]
+  #   if present
+  #
+  # @return [nil]
+  #   otherwise
+  #
+  # @api private
+  #
+  abstract_method :if_modified_since
 
   # Return path info
   #

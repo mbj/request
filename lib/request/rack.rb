@@ -1,10 +1,12 @@
 class Request
   # Rack request
   class Rack < self
+    include Composition.new(:rack_env)
 
-    SERVER_PORT     = Key.new('SERVER_PORT')
-    REQUEST_METHOD  = Key.new('REQUEST_METHOD')
-    RACK_URL_SCHEME = Key.new('rack.url_scheme')
+    SERVER_PORT       = Key.new('SERVER_PORT')
+    REQUEST_METHOD    = Key.new('REQUEST_METHOD')
+    RACK_URL_SCHEME   = Key.new('rack.url_scheme')
+    IF_MODIFIED_SINCE = Key.new('HTTP_IF_MODIFIED_SINCE')
 
     # Declare accessor
     #
@@ -21,14 +23,6 @@ class Request
       end
     end
 
-    # Return rack env
-    #
-    # @return [Hash]
-    #
-    # @api private
-    #
-    attr_reader :rack_env
-
     # Return http port
     #
     # @return [Fixnum]
@@ -39,17 +33,6 @@ class Request
       @rack_env.fetch(SERVER_PORT).to_i(10)
     end
     memoize :port
-
-    # Initialize object
-    #
-    # @param [Hash] rack_env
-    #   the rack env
-    #
-    # @api private
-    #
-    def initialize(rack_env)
-      @rack_env = rack_env
-    end
 
     # Return request protocol
     #
@@ -72,6 +55,22 @@ class Request
       Method.get(access(REQUEST_METHOD))
     end
     memoize :request_method
+
+    # Return if modified since
+    #
+    # @return [Time]
+    #   if present
+    #
+    # @return [nil]
+    #   otherwise
+    #
+    # @api private
+    #
+    def if_modified_since
+      value = @rack_env.fetch(IF_MODIFIED_SINCE) { return }
+      Time.httpdate(value)
+    end
+    memoize :if_modified_since
 
     accessor(:path_info, Key.new('PATH_INFO')      )
     accessor(:host,      Key.new('SERVER_NAME')    )
