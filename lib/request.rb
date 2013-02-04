@@ -6,7 +6,12 @@ require 'ice_nine'
 
 # Library namespace and abstract base class
 class Request
-  KEYS = %W(path_info protocol port request_method host if_modified_since query_params).map(&:to_sym).freeze
+
+  KEYS = %W(
+    path_info protocol port request_method 
+    host if_modified_since query_params 
+    query_string
+  ).map(&:to_sym).freeze
 
   METHODS = (KEYS + %W(rack_env get? post?)).map(&:to_sym).freeze
 
