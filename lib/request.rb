@@ -6,7 +6,7 @@ require 'ice_nine'
 
 # Library namespace and abstract base class
 class Request
-  KEYS = %W(path_info protocol port request_method host if_modified_since).map(&:to_sym).freeze
+  KEYS = %W(path_info protocol port request_method host if_modified_since query_params).map(&:to_sym).freeze
 
   METHODS = (KEYS + %W(rack_env get? post?)).map(&:to_sym).freeze
 
@@ -63,6 +63,22 @@ class Request
   # @api private
   #
   abstract_method :request_method
+
+  # Return query params
+  #
+  # @return [Hash]
+  #
+  # @api private
+  #
+  abstract_method :query_params
+
+  # Return query string
+  #
+  # @return [String]
+  #
+  # @api private
+  #
+  abstract_method :query_string
 
   # Return absolute uri
   #

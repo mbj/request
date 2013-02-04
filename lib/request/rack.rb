@@ -72,8 +72,9 @@ class Request
     end
     memoize :if_modified_since
 
-    accessor(:path_info, Key.new('PATH_INFO')      )
-    accessor(:host,      Key.new('SERVER_NAME')    )
+    accessor(:path_info,    Key.new('PATH_INFO')   )
+    accessor(:host,         Key.new('SERVER_NAME') )
+    accessor(:query_string, Key.new('QUERY_STRING'))
 
   private
 
