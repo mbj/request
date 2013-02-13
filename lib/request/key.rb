@@ -2,6 +2,7 @@ class Request
 
   # A string with cashed #hash for faster hash access
   class Key < ::String
+    alias :str_hash :hash
 
     # Return hash
     #
@@ -21,7 +22,7 @@ class Request
     #
     def initialize(string)
       super(string)
-      @hash = hash
+      @hash = str_hash
       freeze
     end
   end
