@@ -3,6 +3,10 @@ class Request
   #
   # FIXME: I do not like this, need to come up with something much better!
   #
+  # Violates LSP. 
+  #
+  # Remove this once "Dispatch" class in Joy is ready.
+  #
   class Routed < self
     include Composition.new(:request, :routing_params)
 
