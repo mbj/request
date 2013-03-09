@@ -1,4 +1,4 @@
-require 'composition'
+require 'concord'
 require 'equalizer'
 require 'abstract_type'
 require 'adamantium'

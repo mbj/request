@@ -8,7 +8,7 @@ class Request
   # Remove this once "Dispatch" class in Joy is ready.
   #
   class Routed < self
-    include Composition.new(:request, :routing_params)
+    include Concord.new(:request, :routing_params)
 
     METHODS.each do |name|
       define_method(name) do

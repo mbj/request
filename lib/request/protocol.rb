@@ -1,6 +1,6 @@
 class Request
   class Protocol
-    include Adamantium, Composition.new(:name, :default_port)
+    include Adamantium, Concord.new(:name, :default_port)
 
     private_class_method :new
 

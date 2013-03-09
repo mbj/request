@@ -1,7 +1,7 @@
 class Request
   # The request method of a request
   class Method
-    include Adamantium, Composition.new(:verb)
+    include Adamantium, Concord.new(:verb)
 
     private_class_method :new
 
