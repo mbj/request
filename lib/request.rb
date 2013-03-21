@@ -3,6 +3,7 @@ require 'equalizer'
 require 'abstract_type'
 require 'adamantium'
 require 'ice_nine'
+require 'securerandom'
 
 # Library namespace and abstract base class
 class Request
@@ -16,6 +17,15 @@ class Request
   METHODS = (KEYS + %W(rack_env get? post?)).map(&:to_sym).freeze
 
   include Adamantium::Flat, AbstractType, Equalizer.new(*KEYS)
+
+  # Return unique id
+  #
+  # @return [String]
+  #
+  def uid
+    SecureRandom.hex(6)
+  end
+  memoize :uid
 
   # Return protocol
   #
