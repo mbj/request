@@ -10,8 +10,8 @@ class Request
 
   KEYS = %W(
     path_info protocol port request_method 
-    host if_modified_since query_params 
-    query_string
+    host if_modified_since query_params query_params_hash
+    query_string content_length content_type body
   ).map(&:to_sym).freeze
 
   METHODS = (KEYS + %W(rack_env get? post?)).map(&:to_sym).freeze
@@ -81,11 +81,24 @@ class Request
 
   # Return query params
   #
-  # @return [Hash]
+  # @return [Array]
   #
   # @api private
   #
   abstract_method :query_params
+
+  # Return query params hash
+  #
+  # @return [Hash]
+  #
+  # @api private
+  #
+  def query_params_hash
+    query_params.each_with_object({}) do |(key, value), hash|
+      hash[key]=value
+    end
+  end
+  memoize :query_params_hash
 
   # Return query string
   #

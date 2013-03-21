@@ -7,6 +7,7 @@ class Request
     REQUEST_METHOD    = Key.new('REQUEST_METHOD')
     RACK_URL_SCHEME   = Key.new('rack.url_scheme')
     IF_MODIFIED_SINCE = Key.new('HTTP_IF_MODIFIED_SINCE')
+    CONTENT_LENGTH    = Key.new('CONTENT_LENGTH')
 
     # Declare accessor
     #
@@ -56,6 +57,27 @@ class Request
     end
     memoize :request_method
 
+    # Return content length
+    #
+    # @return [Fixnum]
+    #
+    # @api private
+    #
+    def content_length
+      access(CONTENT_LENGTH).to_i(10)
+    end
+
+    # Return query params
+    #
+    # @return [Array]
+    #
+    # @api private
+    #
+    def query_params
+      Addressable::URI.form_unencode(query_string)
+    end
+    memoize :query_params
+
     # Return if modified since
     #
     # @return [Time]
@@ -75,6 +97,8 @@ class Request
     accessor(:path_info,    Key.new('PATH_INFO')   )
     accessor(:host,         Key.new('SERVER_NAME') )
     accessor(:query_string, Key.new('QUERY_STRING'))
+    accessor(:content_type, Key.new('CONTENT_TYPE'))
+    accessor(:body,         Key.new('rack.input'))
 
   private
 
