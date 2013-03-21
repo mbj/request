@@ -60,7 +60,8 @@ Duplication:
   max_calls: 1 
 UtilityFunction:
   max_helper_calls: 0 
-  exclude: []
+  exclude:
+  - Request#uid # Acceptable
   enabled: true
 Attribute:
   exclude: []

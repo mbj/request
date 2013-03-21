@@ -22,6 +22,8 @@ class Request
   #
   # @return [String]
   #
+  # @api private
+  #
   def uid
     SecureRandom.hex(6)
   end
