@@ -6,9 +6,10 @@ class Request
     private_class_method :new
 
     ALL = []
-    ALL << POST = new('POST')
-    ALL << GET  = new('GET')
-    ALL << PUT  = new('PUT')
+    ALL << POST   = new('POST')
+    ALL << GET    = new('GET')
+    ALL << PUT    = new('PUT')
+    ALL << DELETE = new('DELETE')
     ALL.freeze
 
     INDEX = ALL.each_with_object({}) do |method, index|
