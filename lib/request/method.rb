@@ -6,6 +6,7 @@ class Request
     private_class_method :new
 
     ALL = []
+    ALL << HEAD   = new('HEAD')
     ALL << POST   = new('POST')
     ALL << GET    = new('GET')
     ALL << PUT    = new('PUT')
