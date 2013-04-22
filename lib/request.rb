@@ -1,4 +1,5 @@
 require 'concord'
+require 'time'
 require 'equalizer'
 require 'abstract_type'
 require 'adamantium'
