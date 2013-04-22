@@ -90,7 +90,11 @@ class Request
     #
     def if_modified_since
       value = @rack_env.fetch(IF_MODIFIED_SINCE) { return }
-      Time.httpdate(value)
+      begin
+        Time.httpdate(value) 
+      rescue ArgumentError 
+        nil
+      end
     end
     memoize :if_modified_since
 

@@ -15,7 +15,7 @@ shared_examples_for 'a rack env accessor' do
 
   let(:env) { default_env.merge(rack_key => rack_key_value) }
 
-  it { should be(expected_value) }
+  it { should eql(expected_value) }
 
   it 'should not freeze the input env' do
     subject
