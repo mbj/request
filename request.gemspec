@@ -15,7 +15,7 @@ Gem::Specification.new do |gem|
   gem.extra_rdoc_files = %w[LICENSE README.md TODO]
 
   gem.add_dependency('backports',     [ '~> 3.0', '>= 3.0.3' ])
-  gem.add_dependency('concord',       '~> 0.0.3')
+  gem.add_dependency('concord',       '~> 0.1.0')
   gem.add_dependency('ice_nine',      '~> 0.7.0')
   gem.add_dependency('adamantium',    '~> 0.0.7')
   gem.add_dependency('equalizer',     '~> 0.0.5')

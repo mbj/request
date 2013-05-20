@@ -9,6 +9,22 @@ class Request
     ALL << HTTP  = new('http',   80)
     ALL << HTTPS = new('https', 443)
 
+    # Return name
+    #
+    # @return [String]
+    #
+    # @api private
+    #
+    attr_reader :name
+
+    # Return default port
+    #
+    # @return [Fixnum]
+    #
+    # @api private
+    #
+    attr_reader :default_port
+
     ALL.freeze
 
     INDEX = ALL.each_with_object({}) do |protocol, index|

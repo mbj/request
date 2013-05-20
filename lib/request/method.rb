@@ -13,6 +13,14 @@ class Request
     ALL << DELETE = new('DELETE')
     ALL.freeze
 
+    # Return verb
+    #
+    # @return [String]
+    #
+    # @api private
+    #
+    attr_reader :verb
+
     INDEX = ALL.each_with_object({}) do |method, index|
       index[method.verb]=method
     end.freeze
