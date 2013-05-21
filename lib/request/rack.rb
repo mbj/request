@@ -1,13 +1,31 @@
 class Request
   # Rack request
   class Rack < self
-    include Concord::Public.new(:rack_env)
-
     SERVER_PORT       = Key.new('SERVER_PORT')
     REQUEST_METHOD    = Key.new('REQUEST_METHOD')
     RACK_URL_SCHEME   = Key.new('rack.url_scheme')
     IF_MODIFIED_SINCE = Key.new('HTTP_IF_MODIFIED_SINCE')
     CONTENT_LENGTH    = Key.new('CONTENT_LENGTH')
+
+    # Initialize object
+    #
+    # @param [Hash] rack_env
+    #
+    # @return [undefined]
+    #
+    # @api private
+    #
+    def initialize(rack_env)
+      @rack_env = rack_env
+    end
+
+    # Return rack env
+    #
+    # @return [Hash]
+    #
+    # @api private
+    #
+    attr_reader :rack_env
 
     # Declare accessor
     #

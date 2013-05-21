@@ -1,3 +1,7 @@
+# v0.0.4 2013-05-21
+
+- Fix equalizing of Request::Rack
+
 # v0.0.3 2013-05-21
 
 - Regression in Request::Rack#rack_env
