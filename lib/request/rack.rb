@@ -1,7 +1,7 @@
 class Request
   # Rack request
   class Rack < self
-    include Concord.new(:rack_env)
+    include Concord::Public.new(:rack_env)
 
     SERVER_PORT       = Key.new('SERVER_PORT')
     REQUEST_METHOD    = Key.new('REQUEST_METHOD')
