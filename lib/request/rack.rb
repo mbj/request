@@ -1,11 +1,15 @@
 class Request
   # Rack request
   class Rack < self
+
     SERVER_PORT       = Key.new('SERVER_PORT')
     REQUEST_METHOD    = Key.new('REQUEST_METHOD')
     RACK_URL_SCHEME   = Key.new('rack.url_scheme')
     IF_MODIFIED_SINCE = Key.new('HTTP_IF_MODIFIED_SINCE')
     CONTENT_LENGTH    = Key.new('CONTENT_LENGTH')
+
+    # Error raised when an invalid rack env key is accessed
+    InvalidKeyError = Class.new(RuntimeError)
 
     # Initialize object
     #
@@ -36,11 +40,12 @@ class Request
     #
     # @api private
     #
-    def self.accessor(name, key)
+    def self.accessor(name, key, *args)
       define_method(name) do
-        access(key)
+        access(key, *args)
       end
     end
+    private_class_method :accessor
 
     # Return http port
     #
@@ -75,6 +80,8 @@ class Request
     end
     memoize :request_method
 
+    CONTENT_LENGTH_REGEXP = /\A[0-9]+\z/.freeze
+
     # Return content length
     #
     # @return [Fixnum]
@@ -82,8 +89,17 @@ class Request
     # @api private
     #
     def content_length
-      access(CONTENT_LENGTH).to_i(10)
+      value = @rack_env.fetch(CONTENT_LENGTH) do
+        return 0
+      end
+
+      unless value =~ CONTENT_LENGTH_REGEXP
+        raise InvalidKeyError, 'invalid content length'
+      end
+
+      value.to_i
     end
+    memoize :content_length
 
     # Return query params
     #
@@ -116,11 +132,11 @@ class Request
     end
     memoize :if_modified_since
 
-    accessor(:path_info,    Key.new('PATH_INFO')   )
-    accessor(:host,         Key.new('SERVER_NAME') )
-    accessor(:query_string, Key.new('QUERY_STRING'))
-    accessor(:content_type, Key.new('CONTENT_TYPE'))
-    accessor(:body,         Key.new('rack.input'))
+    accessor(:path_info,    Key.new('PATH_INFO')        )
+    accessor(:host,         Key.new('SERVER_NAME')      )
+    accessor(:query_string, Key.new('QUERY_STRING')     )
+    accessor(:content_type, Key.new('CONTENT_TYPE'), nil)
+    accessor(:body,         Key.new('rack.input')       )
 
   private
 
@@ -132,8 +148,9 @@ class Request
     #
     # @api private
     #
-    def access(key)
-      @rack_env.fetch(key)
+    def access(key, *args)
+      @rack_env.fetch(key, *args)
     end
-  end
-end
+
+  end # Rack
+end # Request

@@ -11,8 +11,6 @@ describe Request::Rack, '#request_method' do
       let(:rack_key_value)   { method.verb              }
       let(:expected_value)   { method                   }
 
-      #let(:expected_method)
-
     end
   end
 end

@@ -11,8 +11,6 @@ describe Request::Rack, '#protocol' do
       let(:rack_key_value)   { protocol.name            }
       let(:expected_value)   { protocol                 }
 
-      #let(:expected_method)
-
     end
   end
 end

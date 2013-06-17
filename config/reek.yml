@@ -22,7 +22,8 @@ UncommunicativeMethodName:
   - !ruby/regexp /[A-Z]/
 LongParameterList:
   max_params: 2 
-  exclude: []
+  exclude:
+  - Request::Rack#self.accessor # 3 params
   enabled: true
   overrides: {}
 FeatureEnvy:
