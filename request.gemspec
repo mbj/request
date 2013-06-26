@@ -16,8 +16,8 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency('backports',     [ '~> 3.0', '>= 3.0.3' ])
   gem.add_dependency('concord',       '~> 0.1.0')
-  gem.add_dependency('ice_nine',      '~> 0.7.0')
-  gem.add_dependency('adamantium',    '~> 0.0.7')
+  gem.add_dependency('ice_nine',      '~> 0.8.0')
+  gem.add_dependency('adamantium',    '~> 0.0.8')
   gem.add_dependency('equalizer',     '~> 0.0.5')
   gem.add_dependency('abstract_type', '~> 0.0.5')
 end
