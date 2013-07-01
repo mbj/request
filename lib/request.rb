@@ -10,7 +10,7 @@ require 'securerandom'
 class Request
 
   KEYS = %W(
-    path_info protocol port request_method 
+    path_info protocol port request_method
     host if_modified_since query_params query_params_hash
     query_string content_length content_type body
   ).map(&:to_sym).freeze
@@ -131,18 +131,6 @@ class Request
   #
   def absolute_uri_path(path)
     "#{root_uri}#{path}"
-  end
-
-  # Return routed request
-  #
-  # @param [Hash] params
-  #
-  # @return [Request::Routed]
-  #
-  # @api private
-  #
-  def route(params)
-    Routed.new(self, params)
   end
 
   # Return root uri
