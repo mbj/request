@@ -166,6 +166,5 @@ end
 
 require 'request/key'
 require 'request/rack'
-require 'request/routed'
 require 'request/method'
 require 'request/protocol'
