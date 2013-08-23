@@ -5,7 +5,7 @@ describe Request::Rack, '#rack_env' do
 
   let(:object) { described_class.new(rack_env) }
 
-  let(:rack_env) { mock('Rack Env') }
+  let(:rack_env) { double('Rack Env') }
 
   it { should be(rack_env) }
 
