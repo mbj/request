@@ -8,6 +8,7 @@ Gem::Specification.new do |gem|
   gem.description = 'HTTP request porofication'
   gem.summary     = gem.description
   gem.homepage    = 'https://github.com/mbj/response'
+  gem.license     = 'MIT'
 
   gem.require_paths    = [ 'lib' ]
   gem.files            = `git ls-files`.split("\n")
