@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |gem|
   gem.name        = 'request'
-  gem.version     = '0.0.5'
+  gem.version     = '0.0.6'
   gem.authors     = [ 'Markus Schirp' ]
   gem.email       = [ 'mbj@schirp-dso.com' ]
   gem.description = 'HTTP request porofication'
