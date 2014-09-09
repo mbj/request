@@ -18,7 +18,14 @@ describe Request::Protocol, '.get' do
   context 'with "ftp"' do
     let(:input) { 'ftp' }
     it 'should raise error' do
-      expect { subject }.to raise_error(KeyError, 'key not found: "ftp"')
+      # jruby has different message format
+      expectation =
+        begin
+          {}.fetch('ftp')
+        rescue KeyError => error
+          error
+        end
+      expect { subject }.to raise_error(KeyError, expectation.message)
     end
   end
 end
