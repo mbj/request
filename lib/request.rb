@@ -5,9 +5,12 @@ require 'abstract_type'
 require 'adamantium'
 require 'ice_nine'
 require 'securerandom'
+require 'cookie'
 
 # Library namespace and abstract base class
 class Request
+
+  EMPTY_STRING = ''.freeze
 
   KEYS = %w[
     path_info
