@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Request::Rack, '#content_length' do
   subject { object.content_length }
 
-  let(:rack_key) { 'CONTENT_LENGTH'}
+  let(:rack_key) { 'CONTENT_LENGTH' }
 
   context 'with decimal positive integer' do
     it_should_behave_like 'a rack env accessor' do
@@ -40,7 +40,7 @@ describe Request::Rack, '#content_length' do
 
     it_should_behave_like 'a rack env accessor' do
 
-      let(:expected_value) { 0                }
+      let(:expected_value) { 0 }
 
     end
   end

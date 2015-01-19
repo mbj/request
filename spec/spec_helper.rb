@@ -1,8 +1,6 @@
 # encoding: utf-8
 
-require 'request'
 require 'devtools'
-Devtools.init_spec_helper
+require 'request'
 
-RSpec.configure do |config|
-end
+Devtools.init_spec_helper

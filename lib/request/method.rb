@@ -22,7 +22,7 @@ class Request
     attr_reader :verb
 
     INDEX = ALL.each_with_object({}) do |method, index|
-      index[method.verb]=method
+      index[method.verb] = method
     end.freeze
 
     # Return request method
