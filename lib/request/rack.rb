@@ -7,6 +7,7 @@ class Request
     RACK_URL_SCHEME   = Key.new('rack.url_scheme')
     IF_MODIFIED_SINCE = Key.new('HTTP_IF_MODIFIED_SINCE')
     CONTENT_LENGTH    = Key.new('CONTENT_LENGTH')
+    HTTP_COOKIE       = Key.new('HTTP_COOKIE')
 
     # Error raised when an invalid rack env key is accessed
     InvalidKeyError = Class.new(RuntimeError)
@@ -131,6 +132,16 @@ class Request
       end
     end
     memoize :if_modified_since
+
+    # Return a registry of all received cookies
+    #
+    # @return [Cookie::Registry]
+    #
+    # @api private
+    def cookies
+      Cookie::Registry.coerce(rack_env.fetch(HTTP_COOKIE, EMPTY_STRING))
+    end
+    memoize :cookies
 
     accessor(:path_info,    Key.new('PATH_INFO'))
     accessor(:host,         Key.new('SERVER_NAME'))
