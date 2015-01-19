@@ -23,7 +23,7 @@ shared_examples_for 'a rack env accessor' do
 
   it 'should not freeze the input env' do
     subject
-    env.frozen?.should be(false)
+    expect(env.frozen?).to be(false)
   end
 end
 

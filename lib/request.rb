@@ -9,13 +9,22 @@ require 'securerandom'
 # Library namespace and abstract base class
 class Request
 
-  KEYS = %W(
-    path_info protocol port request_method
-    host if_modified_since query_params query_params_hash
-    query_string content_length content_type body
-  ).map(&:to_sym).freeze
+  KEYS = %w[
+    path_info
+    protocol
+    port
+    request_method
+    host
+    if_modified_since
+    query_params
+    query_params_hash
+    query_string
+    content_length
+    content_type
+    body
+  ].map(&:to_sym).freeze
 
-  METHODS = (KEYS + %W(rack_env get? post?)).map(&:to_sym).freeze
+  METHODS = (KEYS + %w[rack_env get? post?]).map(&:to_sym).freeze
 
   include Adamantium::Flat, AbstractType, Equalizer.new(*KEYS)
 
@@ -98,7 +107,7 @@ class Request
   #
   def query_params_hash
     query_params.each_with_object({}) do |(key, value), hash|
-      hash[key]=value
+      hash[key] = value
     end
   end
   memoize :query_params_hash
@@ -153,7 +162,7 @@ class Request
   # @api private
   #
   def host_with_port
-    uhost, uport = self.host, self.port
+    uhost, uport = host, port
     if port != protocol.default_port
       "#{uhost}:#{uport}"
     else

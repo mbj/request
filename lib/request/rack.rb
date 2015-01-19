@@ -94,7 +94,7 @@ class Request
       end
 
       unless value =~ CONTENT_LENGTH_REGEXP
-        raise InvalidKeyError, 'invalid content length'
+        fail InvalidKeyError, 'invalid content length'
       end
 
       value.to_i
@@ -125,18 +125,18 @@ class Request
     def if_modified_since
       value = @rack_env.fetch(IF_MODIFIED_SINCE) { return }
       begin
-        Time.httpdate(value) 
-      rescue ArgumentError 
+        Time.httpdate(value)
+      rescue ArgumentError
         nil
       end
     end
     memoize :if_modified_since
 
-    accessor(:path_info,    Key.new('PATH_INFO')        )
-    accessor(:host,         Key.new('SERVER_NAME')      )
-    accessor(:query_string, Key.new('QUERY_STRING')     )
+    accessor(:path_info,    Key.new('PATH_INFO'))
+    accessor(:host,         Key.new('SERVER_NAME'))
+    accessor(:query_string, Key.new('QUERY_STRING'))
     accessor(:content_type, Key.new('CONTENT_TYPE'), nil)
-    accessor(:body,         Key.new('rack.input')       )
+    accessor(:body,         Key.new('rack.input'))
 
   private
 
