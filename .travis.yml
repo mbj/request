@@ -1,12 +1,17 @@
 language: ruby
-before_install: gem install bundler
-script: bundle exec rake ci
+sudo: false
+cache: bundler
+script: bundle exec rake spec
 rvm:
-  - 1.9.3
-  - 2.0.0
-  - 2.1.2
+  - 1.9
+  - 2.0
+  - 2.1
   - rbx-2
-  - jruby-19mode
+  - jruby
+  - ruby-head
+  - jruby-head
 matrix:
   allow_failures:
     - rbx-2
+    - ruby-head
+    - jruby-head
